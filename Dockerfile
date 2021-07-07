@@ -6,7 +6,9 @@ ENV DEVEL_KIT_VERSION	0.3.1
 RUN cd /tmp && \
 	apk add lua-resty-core && \ 
 	apk add --virtual build-dependencies build-base luajit-dev zlib-dev pcre-dev && \
-	ln -s /usr/include/luajit-* /usr/include/luajit && \
+	cd /usr/include && \
+	ln -s luajit-* luajit && \
+	cd - && \
 	wget -q https://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz && \
 	wget -q https://github.com/openresty/lua-nginx-module/archive/v${LUA_MODULE_VERSION}.tar.gz -O lua-nginx-module-${LUA_MODULE_VERSION}.tar.gz && \
 	wget -q https://github.com/vision5/ngx_devel_kit/archive/v${DEVEL_KIT_VERSION}.tar.gz -O ngx_devel_kit-${DEVEL_KIT_VERSION}.tar.gz && \
